@@ -48,7 +48,7 @@ def get_peca_by_id(id_peca: int, session: Session = Depends(get_session),
     return peca
 
 # Retorna a peça procurada por nome
-@router.get("/nome_peca/{nome_peca}", response_model= list[Peca])
+@router.get("/nome_peca/{nome_peca}", response_model= list[PecaResponse])
 def get_peca_by_name(nome_peca: str, session: Session = Depends(get_session),
                             offset: int = 0, limit: int = Query(default=5, le=100)):
     # Consulta

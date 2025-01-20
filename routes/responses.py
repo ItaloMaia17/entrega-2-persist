@@ -10,9 +10,6 @@ class DispositivoResponse(SimpleDispositivo):
 
     servicos: list["SimpleServico"] | None
 
-    class Config:
-        orm_mode = True
-
 class SimpleTecnico(BaseModel):
     id: int
     nome: str
@@ -23,9 +20,6 @@ class SimpleTecnico(BaseModel):
 class TecnicoResponse(SimpleTecnico):
     servicos: list["SimpleServico"] | None
 
-    class Config:
-        orm_mode = True
-
 class SimplePeca(BaseModel):
     id: int
     nome: str
@@ -33,9 +27,6 @@ class SimplePeca(BaseModel):
 
 class PecaResponse(SimplePeca):
     servicos: list["SimpleServico"] | None
-
-    class Config:
-        orm_mode = True
 
 class SimpleServico(BaseModel):
     id: int
@@ -49,6 +40,3 @@ class ServicoResponse(SimpleServico):
     tecnico: SimpleTecnico
     pecas: list[SimplePeca]
 
-    # Faz as conversões ORM para dicionário
-    class Config:
-        orm_mode = True

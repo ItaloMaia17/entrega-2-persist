@@ -72,12 +72,12 @@ def listar_servicos_tecnico(tecnico_id: int, session: Session = Depends(get_sess
 
 # Conta a quantidade de serviços realizados por um técnico
 @router.get("/tecnicos/{tecnico_id}/servicos/cont_services")
-async def contar_servicos_tecnico(tecnico_id: int, session: Session = Depends(get_session)):
+def contar_servicos_tecnico(tecnico_id: int, session: Session = Depends(get_session)):
     # Conta todos os serviços associados a um tecnico
     statement = select(func.count(Servico.id)).where(Servico.tecnico_id == tecnico_id)
     result = session.execute(statement).scalar()
-    count = result[0]
-    return {"tecnico_id": tecnico_id, "quantidade_servicos": count}
+    # count = result[0]
+    return {"tecnico_id": tecnico_id, "quantidade_servicos": result}
 
 # Atualiza os dados de um Técnico existente
 @router.put("/{id_tecnico}", response_model=TecnicoResponse)

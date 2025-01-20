@@ -48,7 +48,7 @@ def get_dispositivo_by_id(id_disp: int, session: Session = Depends(get_session),
     return dispositivo
 
 # Retorna o Dispositivo procurado por modelo
-@router.get("/{model_disp}", response_model= list[Dispositivo])
+@router.get("/model/{model_disp}", response_model= list[DispositivoResponse])
 def get_dispositivo_by_model(model_disp: str, session: Session = Depends(get_session),
                             offset: int = 0, limit: int = Query(default=5, le=100)):
     # Consulta
@@ -61,7 +61,7 @@ def get_dispositivo_by_model(model_disp: str, session: Session = Depends(get_ses
     return dispositivo
 
 # Lista os serviços relizados em um dispositivo
-@router.get("/dispositivos/{dispositivo_id}/servicos", response_model= list[Dispositivo])
+@router.get("/dispositivos/{dispositivo_id}/servicos", response_model= DispositivoResponse)
 def listar_servicos_dispositivo(dispositivo_id: int, session: Session = Depends(get_session)):
     # Consulta
     dispositivo = session.get(Dispositivo, dispositivo_id)
